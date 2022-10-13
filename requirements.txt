@@ -3,6 +3,7 @@ certifi==2022.9.24
 charset-normalizer==2.1.1
 coreapi==2.3.3
 coreschema==0.0.4
+dj-rest-auth==2.2.5
 Django==4.1.1
 django-debug-toolbar==3.7.0
 djangorestframework==3.14.0

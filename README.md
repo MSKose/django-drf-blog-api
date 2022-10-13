@@ -9,7 +9,6 @@
 
 - [Overview](#overview)
 - [Stack & Tools](#stack)
-- [Notes](#notes)
 - [Project Structure](#project-structure)
 - [How to use](#how-to-use)
 - [Contact](#contact)
@@ -18,11 +17,8 @@
 
 ## Overview
 
-This is a back-end stock-app project made with Django DRF. I have used different tools to develop this project, including drf-yasg, django toolbar, and django rest auth
+This is a back-end blog-api project made with Django DRF. I have used different tools to develop this project, including drf-yasg, django toolbar, and django rest auth
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/98649983/194851648-3e22780b-7e5c-481f-aabc-facc261b485b.gif">
-</p>
 
 <h2 id="stack">Stack & Tools</h2>
 
