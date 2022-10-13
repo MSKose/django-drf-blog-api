@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from dj_rest_auth.serializers import TokenSerializer
+from .models import Profile
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -74,3 +75,8 @@ class CustomTokenSerializer(TokenSerializer):
             'key',
             'user'
         )
+
+class ProfileUpdateForm(serializers.ModelSerializer): 
+    class Meta:
+        model = Profile 
+        fields = ['image'] 

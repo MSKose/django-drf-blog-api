@@ -10,7 +10,7 @@ class Profile(models.Model):
         return f"{self.user.username} Profile"
 
 
-    def save(self, *args, **kwargs):  # this function already exists in our super() we are ovveriding it to make sure images are uploaded on the scale we wanted them to be
+    def save(self, *args, **kwargs):  # this function already exists in our super(), we are ovveriding it to make sure images are uploaded on the scale we want them to be
         super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)

@@ -20,7 +20,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):  # this function already exists in our super() we are ovveriding it to make sure images are uploaded on the scale we want them to be
+    def save(self, *args, **kwargs):  # this function already exists in our super(), we are ovveriding it to make sure images are uploaded on the scale we want them to be
         super().save(*args, **kwargs)
 
         img = Image.open(self.post_image.path)
