@@ -77,6 +77,10 @@ class CustomTokenSerializer(TokenSerializer):
         )
 
 class ProfileUpdateForm(serializers.ModelSerializer): 
+    user = UserSerializer()
     class Meta:
         model = Profile 
-        fields = ['image'] 
+        fields = (
+            'image',
+            'user'
+        )
