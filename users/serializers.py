@@ -84,3 +84,22 @@ class ProfileUpdateForm(serializers.ModelSerializer):
             'image',
             'user'
         )
+
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user')
+        user = instance.user
+
+        instance.image = validated_data.get('image', instance.image)
+        instance.save()
+
+        user.username = user_data.get(
+            'username',
+            user.username
+        )
+        user.email = user_data.get(
+            'email',
+            user.email
+         )
+        user.save()
+
+        return instance
