@@ -8,8 +8,8 @@ from .models import Profile
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-		# since email field set to blank=True and doesn't validate for uniqueness in source code (User/AbstractUser Model) we're defining it again.
-		# for UniqueValidator see: https://www.django-rest-framework.org/api-guide/validators/#uniquevalidator
+    # since email field is set to blank=True and doesn't validate for uniqueness in source code (User/AbstractUser Model) we're defining it again.
+    # for UniqueValidator see: https://www.django-rest-framework.org/api-guide/validators/#uniquevalidator
     email = serializers.EmailField(
             required=True,
             validators=[UniqueValidator(queryset=User.objects.all(), # therefore, this makes sure our emails are unique
@@ -19,8 +19,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True,
         required=True,
-        validators=[validate_password], # validators validates the password for the required standarts
-        style={"input_type": "password"} # this one is not required but adding this will have this field appear as 'passwrod' on browser api 
+        validators=[validate_password], # "validators" validates the password for the required standarts
+        style={"input_type": "password"} # this one is not required but adding this will have this field appear as 'password' on browser api 
     )
 
     password2 = serializers.CharField(

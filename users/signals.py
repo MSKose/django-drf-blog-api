@@ -6,12 +6,12 @@ from .models import Profile
 
 
 @receiver(post_save, sender=User)
-def create_token(sender, instance=None, created=False, **kwargs):
+def create_token(sender, instance=None, created=False, **kwargs): # this one makes sure that our token is created when a user is created
     if created:
         Token.objects.create(user=instance)
 
 
-@receiver(post_save, sender=User)    # receiver decorator take the signal (post_save in this case) and also the sender (User, in our case) as an argument
+@receiver(post_save, sender=User)  # receiver decorator take the signal (post_save in this case) and also the sender (User, in our case) as an argument
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
