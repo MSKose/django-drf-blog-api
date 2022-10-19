@@ -31,4 +31,5 @@ urlpatterns = [
 
     # app urls:
     path('users/', include('users.urls')), 
+    path('blog/', include('blog.urls')), 
 ]
