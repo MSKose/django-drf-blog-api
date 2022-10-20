@@ -2,6 +2,7 @@ from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostListView(generics.ListAPIView):
@@ -9,12 +10,12 @@ class PostListView(generics.ListAPIView):
     serializer_class = PostSerializer
 
 
-class PostCRUD(ModelViewSet):
+class PostCreateView(generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
     '''
-    defining perform_create cuz I was getting an "NOT NULL constraint failed: blog_post.author_id" error
+    overriding perform_create cuz I was getting an "NOT NULL constraint failed: blog_post.author_id" error
     '''
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -28,3 +29,7 @@ class PostCRUD(ModelViewSet):
     # def form_valid(self, form):     
     #     form.instance.author = self.request.user
     #     return super().form_valid(form)
+
+class PostUpdateView(LoginRequiredMixin, generics.RetrieveUpdateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
