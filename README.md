@@ -17,7 +17,7 @@
 
 ## Overview
 
-This is a back-end blog-api project made with Django DRF. I have used different tools to develop this project, including drf-yasg, django toolbar, and django rest auth
+This is a back-end blog-api project made with Django DRF. To build this project I have used various tools, including drf-yasg, django toolbar, and django rest auth
 
 
 <h2 id="stack">Stack & Tools</h2>

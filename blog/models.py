@@ -11,7 +11,8 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
     post_image = models.ImageField(default="blog_default.jpg", upload_to="blog_pics")
-    blog_view = models.IntegerField(default=0)
+    # blog_view = models.IntegerField(default=0)
+    blog_view = models.ManyToManyField(User, related_name="collected_views")
     likes = models.ManyToManyField(User, related_name="collected_votes")
     blog_comment = models.PositiveIntegerField(default=0)
 
