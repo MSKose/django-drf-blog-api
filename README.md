@@ -36,7 +36,21 @@ This is a back-end blog-api project made with Django DRF. To build this project 
 ```bash
 .──── django-drf-blog-api (repo)
 │
+.
 ├── README.md
+├── blog
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── serializers.py
+│   ├── signals.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
 ├── debug.log
 ├── main
 │   ├── __init__.py
@@ -52,7 +66,25 @@ This is a back-end blog-api project made with Django DRF. To build this project 
 │   ├── urls.py
 │   └── wsgi.py
 ├── manage.py
-└── requirements.txt
+├── media (add this folder into your local repo)
+│   ├── blog_default.jpg
+│   ├── blog_pics
+│   ├── default.jpg
+│   └── profile_pics
+├── requirements.txt
+└── users
+    ├── __init__.py
+    ├── __pycache__
+    ├── admin.py
+    ├── apps.py
+    ├── migrations
+    │   └── __pycache__
+    ├── models.py
+    ├── serializers.py
+    ├── signals.py
+    ├── tests.py
+    ├── urls.py
+    └── views.py
 ```
 
 ## How To Use 
