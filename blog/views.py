@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import PostSerializer, CommentSerializer
-from .models import Post, Comment
+from .serializers import PostSerializer, CommentSerializer, LikeSerializer
+from .models import Post, Comment, Like
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,15 +38,15 @@ class PostDeleteView(LoginRequiredMixin, generics.DestroyAPIView):
 
 @api_view(['GET','POST'])
 def like(request, pk):
-    queryset = Post.objects.all()
-    serializer = PostSerializer(queryset, many=True)   
+    queryset = Like.objects.all()
+    LikeSerializers = LikeSerializer(queryset, many=True)   
     
     if request.method == 'POST':
         post = get_object_or_404(Post, pk=pk)
-        like_qs = Post.objects.filter(user=request.user, post=post)
+        like_qs = Like.objects.filter(user=request.user, post=post)
         if like_qs.exists():
                 like_qs[0].delete()
         else:
-            Post.objects.create(user=request.user, post=post)
-        return Response(serializer.data)
-    return Response(serializer.data)
+            Like.objects.create(user=request.user, post=post)
+        return Response(LikeSerializers.data)
+    return Response(LikeSerializers.data)

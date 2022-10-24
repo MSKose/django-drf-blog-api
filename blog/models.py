@@ -13,12 +13,16 @@ class Post(models.Model):
     post_image = models.ImageField(default="blog_default.jpg", upload_to="blog_pics")
     # blog_view = models.IntegerField(default=0)
     blog_view = models.ManyToManyField(User, related_name="collected_views")
-    likes = models.ManyToManyField(User, related_name="collected_votes")
+    # likes = models.ManyToManyField(User, related_name="collected_votes")
     blog_comment = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
         return self.title
+
+    @property
+    def like_count(self):
+        return self.like_set.all().count()
 
 
     def save(self, *args, **kwargs):  # this function already exists in our super(), we are ovveriding it to make sure images are uploaded on the scale we want them to be
@@ -40,3 +44,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.post.title}"
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
