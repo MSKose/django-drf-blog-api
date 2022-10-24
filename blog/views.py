@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 from rest_framework.viewsets import ModelViewSet
@@ -19,7 +22,7 @@ class PostCreateView(generics.CreateAPIView):
     serializer_class = PostSerializer
 
     '''
-    overriding perform_create cuz I was getting a "NOT NULL constraint failed: blog_post.author_id" error
+    overriding the perform_create method cuz I was getting a "NOT NULL constraint failed: blog_post.author_id" error
     '''
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -32,3 +35,18 @@ class PostUpdateView(LoginRequiredMixin, generics.RetrieveUpdateAPIView):
 class PostDeleteView(LoginRequiredMixin, generics.DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+@api_view(['GET','POST'])
+def like(request, pk):
+    queryset = Post.objects.all()
+    serializer = PostSerializer(queryset, many=True)   
+    
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=pk)
+        like_qs = Post.objects.filter(user=request.user, post=post)
+        if like_qs.exists():
+                like_qs[0].delete()
+        else:
+            Post.objects.create(user=request.user, post=post)
+        return Response(serializer.data)
+    return Response(serializer.data)

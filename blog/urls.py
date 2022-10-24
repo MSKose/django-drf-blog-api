@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView, PostDetailView
+from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView, PostDetailView, like
 
 
 from rest_framework.routers import DefaultRouter
@@ -14,4 +14,5 @@ urlpatterns = [
     path('post/create/', PostCreateView.as_view(), name="post-create"),
     path('post/update/<int:pk>/', PostUpdateView.as_view(), name="post-update"),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name="post-delete"),
+    path('likes/<int:pk>/', like, name="post-like"),
 ]
