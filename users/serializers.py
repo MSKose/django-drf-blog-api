@@ -45,10 +45,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data): # we are creating a user but we do not want to include password as is; hence, we do not include it in user
-        user = User.objects.get(username=validated_data['username'])
+        # user = User.objects.get(username=validated_data['username'])
         user = User.objects.create(
-            # username=validated_data['username'],
-            username=user,
+            username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
@@ -61,6 +60,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=False) # required=False since I don't want to have username required when I'm doing an update on my profile
     class Meta:
         model = User
         fields = (
