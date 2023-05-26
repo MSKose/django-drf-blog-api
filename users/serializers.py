@@ -89,7 +89,7 @@ class ProfileUpdateForm(serializers.ModelSerializer):
 
     '''
     Overridding the update method since user object is nested into my profile object 
-    and drf does not allow update method for nested obejcts by default.
+    and drf does not allow update method for nested objects by default.
     '''
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user')
